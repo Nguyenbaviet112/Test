@@ -62,16 +62,3 @@ COMMIT TRAN
 RETURN 0
 GO
 
-CREATE
---ALTER 
-PROC USP_21424069_UPDATE_AMOUNT_ORDER 
-	@ORDERS_ID BIGINT
-AS
-	
-	declare @total_Amount decimal(18,2)
-	set @total_Amount = (select SUM(od.Amount) from OrderDetails od where od.OrderID = @ORDERS_ID)
-
-	update Orders 
-	set Amount = @total_Amount 
-	where ID = @ORDERS_ID
-GO
