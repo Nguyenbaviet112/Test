@@ -1,0 +1,340 @@
+﻿<Page x:Class="BookingAndDelivery.Views.Register"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:BookingAndDelivery.Views"
+      mc:Ignorable="d" 
+      d:DesignHeight="450" d:DesignWidth="800"
+      xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+      Title="Register">
+
+    <Grid>
+        <Border CornerRadius="0 0 0 0" >
+            <TabControl
+                  Style="{StaticResource MaterialDesignNavigatilRailTabControl}"
+                  BorderThickness="0"
+                  BorderBrush="Transparent"
+                  TabStripPlacement="Left"
+                  materialDesign:ShadowAssist.ShadowDepth="Depth0"
+                  materialDesign:ColorZoneAssist.Mode="Standard"
+                  SnapsToDevicePixels="True"
+                  materialDesign:NavigationRailAssist.ShowSelectionBackground="True">
+                <TabItem>
+                    <TabItem.Header>
+                        <StackPanel
+                                Height="auto"
+                                Width="auto">
+                            <materialDesign:PackIcon
+                                Kind="People"
+                                Width="24"
+                                Height="24"
+                                HorizontalAlignment="Center" />
+                            <TextBlock
+                                Text="Customer"
+                                HorizontalAlignment="Center" />
+                        </StackPanel>
+                    </TabItem.Header>
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition/>
+                            <ColumnDefinition/>
+                        </Grid.ColumnDefinitions>
+                        <StackPanel HorizontalAlignment="Center" Grid.Column="0">
+                            <TextBox Name="tbCustomerFullName" FontSize="14" MinWidth="200"
+                                        VerticalAlignment="Top"
+                                        materialDesign:HintAssist.Hint="Full name" 
+                                        Margin="0 30 0 10"/>
+                            <TextBox Name="tbCustomerPhone" FontSize="14" MinWidth="200"
+                                        VerticalAlignment="Top"
+                                        materialDesign:HintAssist.Hint="Phone" 
+                                        Margin="0 10"/>
+                            <TextBox Name="tbCustomerAddress" FontSize="14" MinWidth="200"
+                                        VerticalAlignment="Top"
+                                        materialDesign:HintAssist.Hint="Address" 
+                                        Margin="0 10"/>
+                            <TextBox Name="tbCustomerEmail" FontSize="14" MinWidth="200"
+                                        VerticalAlignment="Top"
+                                        materialDesign:HintAssist.Hint="Email" 
+                                        Margin="0 10"/>
+                        </StackPanel>
+                        <StackPanel HorizontalAlignment="Center" Grid.Column="1">
+                            <TextBox Name="tbCustomerUsername" FontSize="14" MinWidth="200"
+                                        VerticalAlignment="Top"
+                                        materialDesign:HintAssist.Hint="Username" 
+                                        Margin="0 30 0 10"/>
+                            <PasswordBox Name="pwbCustomerPassword" FontSize="14" MinWidth="200"
+                                        VerticalAlignment="Top"
+                                        materialDesign:HintAssist.Hint="Password" 
+                                        Margin="0 10"/>
+                            <PasswordBox Name="pwbCustomerConfirmPassword" FontSize="14" MinWidth="200"
+                                        VerticalAlignment="Top"
+                                        materialDesign:HintAssist.Hint="Confirm password" 
+                                        Margin="0 10"/>
+                            <Button Name="btnCustomerRegister" Click="btnCustomerRegister_Click" Style="{StaticResource MaterialDesignRaisedDarkButton}" Height="46" Margin="0 50 0 10" VerticalAlignment="Bottom">Register</Button>
+                            <TextBlock HorizontalAlignment="Center">
+                                <Hyperlink NavigateUri="Login.xaml" Style="{StaticResource MaterialDesignSubtitle2Hyperlink}" Foreground="Black">
+                                    Login
+                                </Hyperlink>
+                            </TextBlock>
+                        </StackPanel>
+                    </Grid>
+                </TabItem>
+                <TabItem>
+                    <TabItem.Header>
+                        <StackPanel
+                        Height="auto"
+                        Width="auto">
+                            <materialDesign:PackIcon
+                            Kind="Shop"
+                            Width="24"
+                            Height="24"
+                            HorizontalAlignment="Center" />
+                            <TextBlock
+                            Text="Partner"
+                            HorizontalAlignment="Center" />
+                        </StackPanel>
+                    </TabItem.Header>
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition/>
+                            <ColumnDefinition/>
+                            <ColumnDefinition/>
+                        </Grid.ColumnDefinitions>
+                        <StackPanel HorizontalAlignment="Center" Grid.Column="0">
+                            <TextBox Name="tbPartnerFullName" FontSize="14" MinWidth="170"
+                                    VerticalAlignment="Top"
+                                    materialDesign:HintAssist.Hint="Full name" 
+                                    Margin="0 30 0 10"/>
+                            <TextBox Name="tbPartnerRepresentative" FontSize="14" MinWidth="170"
+                                    VerticalAlignment="Top"
+                                    materialDesign:HintAssist.Hint="Representative" 
+                                    Margin="0 10"/>
+                            <ComboBox Name="cbbPartnerCity" FontSize="14" MinWidth="170"
+                                    VerticalAlignment="Top"
+                                    materialDesign:HintAssist.Hint="City" 
+                                    ItemsSource="{Binding listCity}"
+                                    DisplayMemberPath="ItemName"
+                                    SelectedValuePath="ID"
+                                    Margin="0 10"/>
+                            <ComboBox Name="cbbPartnerDistrict" FontSize="14" MinWidth="170"
+                                    VerticalAlignment="Top"
+                                    materialDesign:HintAssist.Hint="District"
+                                    ItemsSource="{Binding listDistrict}"
+                                    DisplayMemberPath="ItemName"
+                                    SelectedValuePath="ID"
+                                    Margin="0 10"/>
+                            <TextBox Name="tbPartnerBranchNumber" FontSize="14" MinWidth="170"
+                                    VerticalAlignment="Top"
+                                    materialDesign:HintAssist.Hint="Branch number" 
+                                    Margin="0 10"/>
+                            <TextBox Name="tbPartnerNumOfOrderPerDay" FontSize="14" MinWidth="170"
+                                        VerticalAlignment="Top"
+                                        materialDesign:HintAssist.Hint="Number of orders per day" 
+                                        Margin="0 10"/>
+                            <TextBox Name="tbPartnerShippingType" FontSize="14" MinWidth="170"
+                                        VerticalAlignment="Top"
+                                        materialDesign:HintAssist.Hint="Shipping type" 
+                                        Margin="0 10"/>
+                        </StackPanel>
+                        <StackPanel Grid.Column="1">
+                            <TextBox Name="tbPartnerBusinessAddress" FontSize="14" MinWidth="170"
+                                        VerticalAlignment="Top"
+                                        materialDesign:HintAssist.Hint="Business address" 
+                                        Margin="0 30 0 10"/>
+                            <TextBox Name="tbPartnerPhone" FontSize="14" MinWidth="170"
+                                        VerticalAlignment="Top"
+                                        materialDesign:HintAssist.Hint="Phone" 
+                                        Margin="0 10"/>
+                            <TextBox Name="tbPartnerEmail" FontSize="14" MinWidth="170"
+                                        VerticalAlignment="Top"
+                                        materialDesign:HintAssist.Hint="Email" 
+                                        Margin="0 10"/>
+                        </StackPanel>
+                        <StackPanel HorizontalAlignment="Center" Grid.Column="2">
+                            <TextBox Name="tbPartnerUsername" FontSize="14" MinWidth="170"
+                                    VerticalAlignment="Top"
+                                    materialDesign:HintAssist.Hint="Username" 
+                                    Margin="0 30 0 10"/>
+                            <PasswordBox Name="pwbPartnerPassword" FontSize="14" MinWidth="170"
+                                    VerticalAlignment="Top"
+                                    materialDesign:HintAssist.Hint="Password" 
+                                    Margin="0 10"/>
+                            <PasswordBox Name="pwbPartnerConfirmPassword" FontSize="14" MinWidth="170"
+                                    VerticalAlignment="Top"
+                                    materialDesign:HintAssist.Hint="Confirm Password" 
+                                    Margin="0 10"/>
+                        </StackPanel>
+                        <StackPanel Grid.ColumnSpan="2" Grid.Column="1" VerticalAlignment="Center">
+                            <Button Name="btnPartnerRegister" Click="btnPartnerRegister_Click" Style="{StaticResource MaterialDesignRaisedDarkButton}" Height="46" Margin="0 50 0 10"  MaxWidth="250">Register</Button>
+                            <TextBlock HorizontalAlignment="Center">
+                                <Hyperlink NavigateUri="Login.xaml" Style="{StaticResource MaterialDesignSubtitle2Hyperlink}" Foreground="Black">
+                                    Login
+                                </Hyperlink>
+                            </TextBlock>
+                        </StackPanel>
+                    </Grid>
+                </TabItem>
+                <TabItem>
+                    <TabItem.Header>
+                    <StackPanel
+                        Height="auto"
+                        Width="auto">
+                        <materialDesign:PackIcon
+                            Kind="DeliveryDining"
+                            Width="24"
+                            Height="24"
+                            HorizontalAlignment="Center" />
+                        <TextBlock
+                            Text="Shipper"
+                            HorizontalAlignment="Center" />
+                    </StackPanel>
+                </TabItem.Header>
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition/>
+                        <ColumnDefinition/>
+                    </Grid.ColumnDefinitions>
+                    <StackPanel HorizontalAlignment="Center" Grid.Column="0">
+                        <TextBox Name="tbShipperFullName" FontSize="14" MinWidth="200"
+                                    VerticalAlignment="Top"
+                                    materialDesign:HintAssist.Hint="Full name" 
+                                    Margin="0 30 0 10"/>
+                        <TextBox Name="tbShipperIdentityCard" FontSize="14" MinWidth="200"
+                                VerticalAlignment="Top"
+                                materialDesign:HintAssist.Hint="Identity Card" 
+                                Margin="0 10"/>
+                        <TextBox Name="tbShipperPhone" FontSize="14" MinWidth="200"
+                                    VerticalAlignment="Top"
+                                    materialDesign:HintAssist.Hint="Phone" 
+                                    Margin="0 10"/>
+                        <TextBox Name="tbShipperAddress" FontSize="14" MinWidth="200"
+                                    VerticalAlignment="Top"
+                                    materialDesign:HintAssist.Hint="Address" 
+                                    Margin="0 10"/>
+                        <TextBox Name="tbShipperLicensePlates" FontSize="14" MinWidth="200"
+                                VerticalAlignment="Top"
+                                materialDesign:HintAssist.Hint="License plates" 
+                                Margin="0 10"/>
+                        <ComboBox Name="cbbShipperCity" FontSize="14" MinWidth="200"
+                            VerticalAlignment="Top"
+                            materialDesign:HintAssist.Hint="City" 
+                                  ItemsSource="{Binding listCity}"
+                                  DisplayMemberPath="ItemName"
+                                  SelectedValuePath="ID"
+                            Margin="0 10"/>
+                        <ComboBox Name="cbbShipperDistrict" FontSize="14" MinWidth="200"
+                                VerticalAlignment="Top"
+                                materialDesign:HintAssist.Hint="District" 
+                                 ItemsSource="{Binding listDistrict}"
+                                  DisplayMemberPath="ItemName"
+                                  SelectedValuePath="ID"
+                                Margin="0 10"/>
+                        <TextBox Name="tbShipperATMCard" FontSize="14" MinWidth="200"
+                                    VerticalAlignment="Top"
+                                    materialDesign:HintAssist.Hint="ATM Card" 
+                                    Margin="0 10"/>
+                    </StackPanel>
+                    <StackPanel HorizontalAlignment="Center" Grid.Column="1">
+                        <TextBox Name="tbShipperUsername" FontSize="14" MinWidth="200"
+                                    VerticalAlignment="Top"
+                                    materialDesign:HintAssist.Hint="Username" 
+                                    Margin="0 30 0 10"/>
+                        <PasswordBox Name="pwbShipperPassword" FontSize="14" MinWidth="200"
+                                    VerticalAlignment="Top"
+                                    materialDesign:HintAssist.Hint="Password" 
+                                    Margin="0 10"/>
+                        <PasswordBox Name="pwbShipperConfirmPassword" FontSize="14" MinWidth="200"
+                                    VerticalAlignment="Top"
+                                    materialDesign:HintAssist.Hint="Confirm Password" 
+                                    Margin="0 10"/>
+                        <Button Name="btnShipperRegister" Click="btnShipperRegister_Click" Style="{StaticResource MaterialDesignRaisedDarkButton}" Height="46" Margin="0 50 0 10" VerticalAlignment="Bottom">Register</Button>
+                        <TextBlock HorizontalAlignment="Center">
+                            <Hyperlink NavigateUri="Login.xaml" Style="{StaticResource MaterialDesignSubtitle2Hyperlink}" Foreground="Black">
+                                Login
+                            </Hyperlink>
+                        </TextBlock>
+                    </StackPanel>
+                </Grid>
+                </TabItem>
+                <TabItem>
+                    <TabItem.Header>
+                        <StackPanel
+                            Height="auto"
+                            Width="auto">
+                            <Image
+                                    Source=".././Assets/Images/icon_staff.png"
+                                    Width="24"
+                                    Height="24"
+                                    HorizontalAlignment="Center" />
+                        <TextBlock
+                                Text="Staff"
+                                HorizontalAlignment="Center" />
+                        </StackPanel>
+                    </TabItem.Header>
+                    <Grid>
+                        <StackPanel HorizontalAlignment="Center">
+                            <TextBox Name="tbStaffUsername" FontSize="14" MinWidth="200"
+                                    VerticalAlignment="Top"
+                                    materialDesign:HintAssist.Hint="Username" 
+                                    Margin="0 30 0 10"/>
+                            <PasswordBox Name="pwbStaffPassword" FontSize="14" MinWidth="200"
+                                    VerticalAlignment="Top"
+                                    materialDesign:HintAssist.Hint="Password" 
+                                    Margin="0 10"/>
+                            <PasswordBox Name="pwbStaffConfirmPassword" FontSize="14" MinWidth="200"
+                                    VerticalAlignment="Top"
+                                    materialDesign:HintAssist.Hint="Confirm Password" 
+                                    Margin="0 10"/>
+                            <Button Name="btnStaffRegister" Click="btnStaffRegister_Click" Style="{StaticResource MaterialDesignRaisedDarkButton}" Height="46" Margin="0 50 0 10" VerticalAlignment="Bottom">Register</Button>
+                            <TextBlock HorizontalAlignment="Center">
+                            <Hyperlink NavigateUri="Login.xaml" Style="{StaticResource MaterialDesignSubtitle2Hyperlink}" Foreground="Black">
+                                Login
+                            </Hyperlink>
+                            </TextBlock>
+                        </StackPanel>
+                    </Grid>
+                </TabItem>
+                <TabItem>
+                    <TabItem.Header>
+                        <StackPanel
+                        Height="auto"
+                        Width="auto">
+                            <materialDesign:PackIcon
+                            Kind="Administrator"
+                            Width="24"
+                            Height="24"
+                            HorizontalAlignment="Center" />
+                            <TextBlock
+                            Text="Admin"
+                            HorizontalAlignment="Center" />
+                        </StackPanel>
+                    </TabItem.Header>
+                    <Grid>
+                        <StackPanel HorizontalAlignment="Center">
+                            <TextBox Name="tbAdminUsername" FontSize="14" MinWidth="200"
+                                        VerticalAlignment="Top"
+                                        materialDesign:HintAssist.Hint="Username" 
+                                        Margin="0 30 0 10"/>
+                            <PasswordBox Name="pwbAdminPassword" FontSize="14" MinWidth="200"
+                                        VerticalAlignment="Top"
+                                        materialDesign:HintAssist.Hint="Password" 
+                                        Margin="0 10"/>
+                            <PasswordBox Name="pwbAdminConfirmPassword" FontSize="14" MinWidth="200"
+                                        VerticalAlignment="Top"
+                                        materialDesign:HintAssist.Hint="Confirm Password" 
+                                        Margin="0 10"/>
+                            <Button Name="btnAdminRegister" Click="btnAdminRegister_Click" Style="{StaticResource MaterialDesignRaisedDarkButton}" Height="46" Margin="0 50 0 10" VerticalAlignment="Bottom">Register</Button>
+                            <TextBlock HorizontalAlignment="Center">
+                                <Hyperlink NavigateUri="Login.xaml" Style="{StaticResource MaterialDesignSubtitle2Hyperlink}" Foreground="Black">
+                                    Login
+                                </Hyperlink>
+                            </TextBlock>
+                        </StackPanel>
+                    </Grid>
+                </TabItem>
+            </TabControl>
+        </Border>
+        
+    </Grid>
+</Page>

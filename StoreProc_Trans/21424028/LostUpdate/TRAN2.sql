@@ -1,0 +1,1 @@
+﻿SELECT * FROM ProductBranchDECLARE @RT INTEXEC @RT = USP_Update_Quantity_Product 1, 1, 10, 1IF @RT = 1	PRINT N'CẬP NHẬT THẤT BẠI'ELSE	PRINT N'CẬP NHẬT THÀNH CÔNG'SELECT * FROM ProductBranch

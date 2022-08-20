@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="3396278e72144a3fb3a600b7aa5b72ef" Name="Diagram1">
+        <EntityTypeShape EntityType="BookingAndTransferFoodsModel.Branch" Width="1.5" PointX="5.25" PointY="7.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="BookingAndTransferFoodsModel.Contract" Width="1.5" PointX="5.25" PointY="11" IsExpanded="true" />
+        <EntityTypeShape EntityType="BookingAndTransferFoodsModel.Dictionary" Width="1.5" PointX="0.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="BookingAndTransferFoodsModel.OrderDetail" Width="1.5" PointX="9.75" PointY="9.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="BookingAndTransferFoodsModel.Order" Width="1.5" PointX="7.5" PointY="8.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="BookingAndTransferFoodsModel.ProductBranch" Width="1.5" PointX="7.5" PointY="4.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="BookingAndTransferFoodsModel.Product" Width="1.5" PointX="5.25" PointY="3.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="BookingAndTransferFoodsModel.Role" Width="1.5" PointX="0.75" PointY="7.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="BookingAndTransferFoodsModel.sysdiagram" Width="1.5" PointX="2.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="BookingAndTransferFoodsModel.UserPermission" Width="1.5" PointX="3" PointY="3.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="BookingAndTransferFoodsModel.User" Width="1.5" PointX="3" PointY="7.75" IsExpanded="true" />
+        <AssociationConnector Association="BookingAndTransferFoodsModel.FK_Branch_Users" ManuallyRouted="false" />
+        <AssociationConnector Association="BookingAndTransferFoodsModel.FK_Orders_Branch" ManuallyRouted="false" />
+        <AssociationConnector Association="BookingAndTransferFoodsModel.FK_ProductBranch_Branch" ManuallyRouted="false" />
+        <AssociationConnector Association="BookingAndTransferFoodsModel.FK_Contract_Users" ManuallyRouted="false" />
+        <AssociationConnector Association="BookingAndTransferFoodsModel.FK_OrderDetails_Orders" ManuallyRouted="false" />
+        <AssociationConnector Association="BookingAndTransferFoodsModel.FK_OrderDetails_Products" ManuallyRouted="false" />
+        <AssociationConnector Association="BookingAndTransferFoodsModel.FK_Orders_Custormer" ManuallyRouted="false" />
+        <AssociationConnector Association="BookingAndTransferFoodsModel.FK_Orders_Driver" ManuallyRouted="false" />
+        <AssociationConnector Association="BookingAndTransferFoodsModel.FK_ProductBranch_Products" ManuallyRouted="false" />
+        <AssociationConnector Association="BookingAndTransferFoodsModel.FK_UserPermission_Roles" ManuallyRouted="false" />
+        <AssociationConnector Association="BookingAndTransferFoodsModel.FK_Users_Roles" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

@@ -1,0 +1,616 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="BookingAndTransferFoodsModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="Branch">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="PartnerID" Type="Int64" Nullable="false" />
+    <Property Name="Branchname" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+    <Property Name="CityID" Type="Int32" />
+    <Property Name="DistrictID" Type="Int32" />
+    <Property Name="Address" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="IsActive" Type="Boolean" Nullable="false" />
+    <NavigationProperty Name="User" Relationship="Self.FK_Branch_Users" FromRole="Branch" ToRole="Users" />
+    <NavigationProperty Name="Orders" Relationship="Self.FK_Orders_Branch" FromRole="Branch" ToRole="Orders" />
+    <NavigationProperty Name="ProductBranches" Relationship="Self.FK_ProductBranch_Branch" FromRole="Branch" ToRole="ProductBranch" />
+  </EntityType>
+  <EntityType Name="Contract">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="PartnerID" Type="Int64" Nullable="false" />
+    <Property Name="TaxCode" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Representative" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="NumBranch" Type="Int32" />
+    <Property Name="Fee" Type="Decimal" Precision="18" Scale="0" />
+    <Property Name="FeePerMonth" Type="Decimal" Precision="18" Scale="2" />
+    <Property Name="FromDate" Type="DateTime" Precision="0" />
+    <Property Name="ToDate" Type="DateTime" Precision="0" />
+    <NavigationProperty Name="User" Relationship="Self.FK_Contract_Users" FromRole="Contract" ToRole="Users" />
+  </EntityType>
+  <EntityType Name="Dictionary">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Type" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="ItemID" Type="Int32" Nullable="false" />
+    <Property Name="ItemName" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+    <Property Name="ParentID" Type="Int32" />
+  </EntityType>
+  <EntityType Name="OrderDetail">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="OrderID" Type="Int64" Nullable="false" />
+    <Property Name="ProductID" Type="Int64" Nullable="false" />
+    <Property Name="Quantity" Type="Int32" />
+    <Property Name="Price" Type="Decimal" Precision="18" Scale="2" />
+    <Property Name="Amount" Type="Decimal" Precision="18" Scale="2" />
+    <NavigationProperty Name="Order" Relationship="Self.FK_OrderDetails_Orders" FromRole="OrderDetails" ToRole="Orders" />
+    <NavigationProperty Name="Product" Relationship="Self.FK_OrderDetails_Products" FromRole="OrderDetails" ToRole="Products" />
+  </EntityType>
+  <EntityType Name="Order">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="BranchID" Type="Int64" Nullable="false" />
+    <Property Name="Payment" Type="Int32" />
+    <Property Name="Amount" Type="Decimal" Precision="18" Scale="2" />
+    <Property Name="TotalAmount" Type="Decimal" Precision="18" Scale="2" />
+    <Property Name="CustomerCityID" Type="Int32" Nullable="false" />
+    <Property Name="CustomerDistrictID" Type="Int32" Nullable="false" />
+    <Property Name="ProductFee" Type="Decimal" Precision="18" Scale="2" />
+    <Property Name="TransferFee" Type="Decimal" Precision="18" Scale="2" />
+    <Property Name="CustomerAddress" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Status" Type="Int32" Nullable="false" />
+    <Property Name="DriverID" Type="Int64" />
+    <Property Name="CustomerID" Type="Int64" Nullable="false" />
+    <NavigationProperty Name="Branch" Relationship="Self.FK_Orders_Branch" FromRole="Orders" ToRole="Branch" />
+    <NavigationProperty Name="OrderDetails" Relationship="Self.FK_OrderDetails_Orders" FromRole="Orders" ToRole="OrderDetails" />
+    <NavigationProperty Name="User" Relationship="Self.FK_Orders_Custormer" FromRole="Orders" ToRole="Users" />
+    <NavigationProperty Name="User1" Relationship="Self.FK_Orders_Driver" FromRole="Orders" ToRole="Users" />
+  </EntityType>
+  <EntityType Name="ProductBranch">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="BranchID" Type="Int64" Nullable="false" />
+    <Property Name="ProductID" Type="Int64" Nullable="false" />
+    <Property Name="Quantity" Type="Int32" />
+    <Property Name="IsActive" Type="Boolean" Nullable="false" />
+    <NavigationProperty Name="Branch" Relationship="Self.FK_ProductBranch_Branch" FromRole="ProductBranch" ToRole="Branch" />
+    <NavigationProperty Name="Product" Relationship="Self.FK_ProductBranch_Products" FromRole="ProductBranch" ToRole="Products" />
+  </EntityType>
+  <EntityType Name="Product">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Name" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="Price" Type="Decimal" Precision="18" Scale="2" />
+    <Property Name="IsActive" Type="Int64" Nullable="false" />
+    <NavigationProperty Name="OrderDetails" Relationship="Self.FK_OrderDetails_Products" FromRole="Products" ToRole="OrderDetails" />
+    <NavigationProperty Name="ProductBranches" Relationship="Self.FK_ProductBranch_Products" FromRole="Products" ToRole="ProductBranch" />
+  </EntityType>
+  <EntityType Name="Role">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Name" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+    <Property Name="IsActive" Type="Boolean" />
+    <NavigationProperty Name="UserPermissions" Relationship="Self.FK_UserPermission_Roles" FromRole="Roles" ToRole="UserPermission" />
+    <NavigationProperty Name="Users" Relationship="Self.FK_Users_Roles" FromRole="Roles" ToRole="Users" />
+  </EntityType>
+  <EntityType Name="sysdiagram">
+    <Key>
+      <PropertyRef Name="diagram_id" />
+    </Key>
+    <Property Name="name" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="principal_id" Type="Int32" Nullable="false" />
+    <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="version" Type="Int32" />
+    <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
+  </EntityType>
+  <EntityType Name="UserPermission">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="RoleID" Type="Int64" Nullable="false" />
+    <Property Name="AdminFn" Type="Boolean" />
+    <Property Name="PartnerFn" Type="Boolean" />
+    <Property Name="CustomerFn" Type="Boolean" />
+    <Property Name="DriverFn" Type="Boolean" />
+    <Property Name="StaffFn" Type="Boolean" />
+    <Property Name="IsActive" Type="Boolean" />
+    <NavigationProperty Name="Role" Relationship="Self.FK_UserPermission_Roles" FromRole="UserPermission" ToRole="Roles" />
+  </EntityType>
+  <EntityType Name="User">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="UserName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Password" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="FullName" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="Representative" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Identity" Type="String" MaxLength="12" FixedLength="false" Unicode="false" />
+    <Property Name="Phone" Type="String" MaxLength="12" FixedLength="false" Unicode="false" />
+    <Property Name="CityID" Type="Int32" />
+    <Property Name="District" Type="Int32" />
+    <Property Name="Address" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="Email" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="NumBranch" Type="Int32" />
+    <Property Name="NameOfBank" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+    <Property Name="BankAccount" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="NumOfOrder" Type="Int32" Nullable="false" />
+    <Property Name="TypeTransferID" Type="Int32" />
+    <Property Name="LicensePlates" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="RoleID" Type="Int64" />
+    <Property Name="IsActive" Type="Boolean" />
+    <NavigationProperty Name="Branches" Relationship="Self.FK_Branch_Users" FromRole="Users" ToRole="Branch" />
+    <NavigationProperty Name="Contracts" Relationship="Self.FK_Contract_Users" FromRole="Users" ToRole="Contract" />
+    <NavigationProperty Name="Orders" Relationship="Self.FK_Orders_Custormer" FromRole="Users" ToRole="Orders" />
+    <NavigationProperty Name="Orders1" Relationship="Self.FK_Orders_Driver" FromRole="Users" ToRole="Orders" />
+    <NavigationProperty Name="Role" Relationship="Self.FK_Users_Roles" FromRole="Users" ToRole="Roles" />
+  </EntityType>
+  <Association Name="FK_Branch_Users">
+    <End Role="Users" Type="Self.User" Multiplicity="1" />
+    <End Role="Branch" Type="Self.Branch" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Users">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="Branch">
+        <PropertyRef Name="PartnerID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Orders_Branch">
+    <End Role="Branch" Type="Self.Branch" Multiplicity="1" />
+    <End Role="Orders" Type="Self.Order" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Branch">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="Orders">
+        <PropertyRef Name="BranchID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_ProductBranch_Branch">
+    <End Role="Branch" Type="Self.Branch" Multiplicity="1" />
+    <End Role="ProductBranch" Type="Self.ProductBranch" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Branch">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="ProductBranch">
+        <PropertyRef Name="BranchID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Contract_Users">
+    <End Role="Users" Type="Self.User" Multiplicity="1" />
+    <End Role="Contract" Type="Self.Contract" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Users">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="Contract">
+        <PropertyRef Name="PartnerID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_OrderDetails_Orders">
+    <End Role="Orders" Type="Self.Order" Multiplicity="1" />
+    <End Role="OrderDetails" Type="Self.OrderDetail" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Orders">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="OrderDetails">
+        <PropertyRef Name="OrderID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_OrderDetails_Products">
+    <End Role="Products" Type="Self.Product" Multiplicity="1" />
+    <End Role="OrderDetails" Type="Self.OrderDetail" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Products">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="OrderDetails">
+        <PropertyRef Name="ProductID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Orders_Custormer">
+    <End Role="Users" Type="Self.User" Multiplicity="1" />
+    <End Role="Orders" Type="Self.Order" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Users">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="Orders">
+        <PropertyRef Name="CustomerID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Orders_Driver">
+    <End Role="Users" Type="Self.User" Multiplicity="0..1" />
+    <End Role="Orders" Type="Self.Order" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Users">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="Orders">
+        <PropertyRef Name="DriverID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_ProductBranch_Products">
+    <End Role="Products" Type="Self.Product" Multiplicity="1" />
+    <End Role="ProductBranch" Type="Self.ProductBranch" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Products">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="ProductBranch">
+        <PropertyRef Name="ProductID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_UserPermission_Roles">
+    <End Role="Roles" Type="Self.Role" Multiplicity="1" />
+    <End Role="UserPermission" Type="Self.UserPermission" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Roles">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="UserPermission">
+        <PropertyRef Name="RoleID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Users_Roles">
+    <End Role="Roles" Type="Self.Role" Multiplicity="0..1" />
+    <End Role="Users" Type="Self.User" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Roles">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="Users">
+        <PropertyRef Name="RoleID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="BookingAndTransferFoodsEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="Branches" EntityType="Self.Branch" />
+    <EntitySet Name="Contracts" EntityType="Self.Contract" />
+    <EntitySet Name="Dictionaries" EntityType="Self.Dictionary" />
+    <EntitySet Name="OrderDetails" EntityType="Self.OrderDetail" />
+    <EntitySet Name="Orders" EntityType="Self.Order" />
+    <EntitySet Name="ProductBranches" EntityType="Self.ProductBranch" />
+    <EntitySet Name="Products" EntityType="Self.Product" />
+    <EntitySet Name="Roles" EntityType="Self.Role" />
+    <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagram" />
+    <EntitySet Name="UserPermissions" EntityType="Self.UserPermission" />
+    <EntitySet Name="Users" EntityType="Self.User" />
+    <AssociationSet Name="FK_Branch_Users" Association="Self.FK_Branch_Users">
+      <End Role="Users" EntitySet="Users" />
+      <End Role="Branch" EntitySet="Branches" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Orders_Branch" Association="Self.FK_Orders_Branch">
+      <End Role="Branch" EntitySet="Branches" />
+      <End Role="Orders" EntitySet="Orders" />
+    </AssociationSet>
+    <AssociationSet Name="FK_ProductBranch_Branch" Association="Self.FK_ProductBranch_Branch">
+      <End Role="Branch" EntitySet="Branches" />
+      <End Role="ProductBranch" EntitySet="ProductBranches" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Contract_Users" Association="Self.FK_Contract_Users">
+      <End Role="Users" EntitySet="Users" />
+      <End Role="Contract" EntitySet="Contracts" />
+    </AssociationSet>
+    <AssociationSet Name="FK_OrderDetails_Orders" Association="Self.FK_OrderDetails_Orders">
+      <End Role="Orders" EntitySet="Orders" />
+      <End Role="OrderDetails" EntitySet="OrderDetails" />
+    </AssociationSet>
+    <AssociationSet Name="FK_OrderDetails_Products" Association="Self.FK_OrderDetails_Products">
+      <End Role="Products" EntitySet="Products" />
+      <End Role="OrderDetails" EntitySet="OrderDetails" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Orders_Custormer" Association="Self.FK_Orders_Custormer">
+      <End Role="Users" EntitySet="Users" />
+      <End Role="Orders" EntitySet="Orders" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Orders_Driver" Association="Self.FK_Orders_Driver">
+      <End Role="Users" EntitySet="Users" />
+      <End Role="Orders" EntitySet="Orders" />
+    </AssociationSet>
+    <AssociationSet Name="FK_ProductBranch_Products" Association="Self.FK_ProductBranch_Products">
+      <End Role="Products" EntitySet="Products" />
+      <End Role="ProductBranch" EntitySet="ProductBranches" />
+    </AssociationSet>
+    <AssociationSet Name="FK_UserPermission_Roles" Association="Self.FK_UserPermission_Roles">
+      <End Role="Roles" EntitySet="Roles" />
+      <End Role="UserPermission" EntitySet="UserPermissions" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Users_Roles" Association="Self.FK_Users_Roles">
+      <End Role="Roles" EntitySet="Roles" />
+      <End Role="Users" EntitySet="Users" />
+    </AssociationSet>
+    <FunctionImport Name="SP_21424057_Order">
+      <Parameter Name="ProductID" Mode="In" Type="Int32" />
+      <Parameter Name="Qty" Mode="In" Type="Int32" />
+      <Parameter Name="CustomerID" Mode="In" Type="Int32" />
+      <Parameter Name="TransferFee" Mode="In" Type="Decimal" />
+      <Parameter Name="OrderIDOut" Mode="InOut" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="SP_21424057_Order_Fix">
+      <Parameter Name="ProductID" Mode="In" Type="Int32" />
+      <Parameter Name="Qty" Mode="In" Type="Int32" />
+      <Parameter Name="CustomerID" Mode="In" Type="Int32" />
+      <Parameter Name="TransferFee" Mode="In" Type="Decimal" />
+      <Parameter Name="OrderIDOut" Mode="InOut" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="SP_21424057_Transfer1">
+      <Parameter Name="OrderID" Mode="In" Type="Int32" />
+      <Parameter Name="DiverID" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="SP_21424057_Transfer1_Fix">
+      <Parameter Name="OrderID" Mode="In" Type="Int32" />
+      <Parameter Name="DiverID" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="SP_21424057_Transfer2">
+      <Parameter Name="OrderID" Mode="In" Type="Int32" />
+      <Parameter Name="DiverID" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="SP_21424057_Transfer2_Fix">
+      <Parameter Name="OrderID" Mode="In" Type="Int32" />
+      <Parameter Name="DiverID" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="SP_21424057_UPDATE_PRICE">
+      <Parameter Name="ProductID" Mode="In" Type="Int32" />
+      <Parameter Name="NewPrice" Mode="In" Type="Decimal" />
+    </FunctionImport>
+    <FunctionImport Name="SP_21424057_UPDATE_PRICE_Fix">
+      <Parameter Name="ProductID" Mode="In" Type="Int32" />
+      <Parameter Name="NewPrice" Mode="In" Type="Decimal" />
+    </FunctionImport>
+    <FunctionImport Name="sp_alterdiagram">
+      <Parameter Name="diagramname" Mode="In" Type="String" />
+      <Parameter Name="owner_id" Mode="In" Type="Int32" />
+      <Parameter Name="version" Mode="In" Type="Int32" />
+      <Parameter Name="definition" Mode="In" Type="Binary" />
+    </FunctionImport>
+    <FunctionImport Name="sp_creatediagram">
+      <Parameter Name="diagramname" Mode="In" Type="String" />
+      <Parameter Name="owner_id" Mode="In" Type="Int32" />
+      <Parameter Name="version" Mode="In" Type="Int32" />
+      <Parameter Name="definition" Mode="In" Type="Binary" />
+    </FunctionImport>
+    <FunctionImport Name="sp_dropdiagram">
+      <Parameter Name="diagramname" Mode="In" Type="String" />
+      <Parameter Name="owner_id" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="sp_helpdiagramdefinition" ReturnType="Collection(BookingAndTransferFoodsModel.sp_helpdiagramdefinition_Result)">
+      <Parameter Name="diagramname" Mode="In" Type="String" />
+      <Parameter Name="owner_id" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="sp_helpdiagrams" ReturnType="Collection(BookingAndTransferFoodsModel.sp_helpdiagrams_Result)">
+      <Parameter Name="diagramname" Mode="In" Type="String" />
+      <Parameter Name="owner_id" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="sp_renamediagram">
+      <Parameter Name="diagramname" Mode="In" Type="String" />
+      <Parameter Name="owner_id" Mode="In" Type="Int32" />
+      <Parameter Name="new_diagramname" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="sp_upgraddiagrams" />
+    <FunctionImport Name="USP_21424028_Contract_Extension">
+      <Parameter Name="ID" Mode="In" Type="Int64" />
+      <Parameter Name="FromDate" Mode="In" Type="DateTime" />
+      <Parameter Name="ToDate" Mode="In" Type="DateTime" />
+    </FunctionImport>
+    <FunctionImport Name="USP_21424028_Contract_Extension_Fix">
+      <Parameter Name="ID" Mode="In" Type="Int64" />
+      <Parameter Name="FromDate" Mode="In" Type="DateTime" />
+      <Parameter Name="ToDate" Mode="In" Type="DateTime" />
+    </FunctionImport>
+    <FunctionImport Name="USP_21424028_Insert_Order">
+      <Parameter Name="BranchID" Mode="In" Type="Int64" />
+      <Parameter Name="Payment" Mode="In" Type="Int32" />
+      <Parameter Name="Amount" Mode="In" Type="Decimal" />
+      <Parameter Name="TotalAmount" Mode="In" Type="Decimal" />
+      <Parameter Name="CustomerCityID" Mode="In" Type="Int32" />
+      <Parameter Name="CustomerDistrictID" Mode="In" Type="Int32" />
+      <Parameter Name="ProductFee" Mode="In" Type="Decimal" />
+      <Parameter Name="TransferFee" Mode="In" Type="Decimal" />
+      <Parameter Name="CustomerAddress" Mode="In" Type="String" />
+      <Parameter Name="Status" Mode="In" Type="Int32" />
+      <Parameter Name="DriverID" Mode="In" Type="Int64" />
+      <Parameter Name="CustomerID" Mode="In" Type="Int64" />
+      <Parameter Name="ProductID" Mode="In" Type="Int64" />
+      <Parameter Name="QuantityOrder" Mode="In" Type="Int32" />
+      <Parameter Name="Price" Mode="In" Type="Decimal" />
+      <Parameter Name="AmountProduct" Mode="In" Type="Decimal" />
+    </FunctionImport>
+    <FunctionImport Name="USP_21424028_Insert_Order_Fix">
+      <Parameter Name="BranchID" Mode="In" Type="Int64" />
+      <Parameter Name="Payment" Mode="In" Type="Int32" />
+      <Parameter Name="Amount" Mode="In" Type="Decimal" />
+      <Parameter Name="TotalAmount" Mode="In" Type="Decimal" />
+      <Parameter Name="CustomerCityID" Mode="In" Type="Int32" />
+      <Parameter Name="CustomerDistrictID" Mode="In" Type="Int32" />
+      <Parameter Name="ProductFee" Mode="In" Type="Decimal" />
+      <Parameter Name="TransferFee" Mode="In" Type="Decimal" />
+      <Parameter Name="CustomerAddress" Mode="In" Type="String" />
+      <Parameter Name="Status" Mode="In" Type="Int32" />
+      <Parameter Name="DriverID" Mode="In" Type="Int64" />
+      <Parameter Name="CustomerID" Mode="In" Type="Int64" />
+      <Parameter Name="ProductID" Mode="In" Type="Int64" />
+      <Parameter Name="QuantityOrder" Mode="In" Type="Int32" />
+      <Parameter Name="Price" Mode="In" Type="Decimal" />
+      <Parameter Name="AmountProduct" Mode="In" Type="Decimal" />
+    </FunctionImport>
+    <FunctionImport Name="USP_21424028_Update_Contract" ReturnType="Collection(BookingAndTransferFoodsModel.USP_21424028_Update_Contract_Result)">
+      <Parameter Name="ID" Mode="In" Type="Int64" />
+    </FunctionImport>
+    <FunctionImport Name="USP_21424028_Update_Contract_Fix" ReturnType="Collection(BookingAndTransferFoodsModel.USP_21424028_Update_Contract_Fix_Result)">
+      <Parameter Name="ID" Mode="In" Type="Int64" />
+    </FunctionImport>
+    <FunctionImport Name="USP_21424028_Update_Quantity_Product">
+      <Parameter Name="BranchID" Mode="In" Type="Int64" />
+      <Parameter Name="ProductID" Mode="In" Type="Int64" />
+      <Parameter Name="Quantity" Mode="In" Type="Int32" />
+      <Parameter Name="isActive" Mode="In" Type="Boolean" />
+    </FunctionImport>
+    <FunctionImport Name="USP_21424028_Update_Quantity_Product_Fix">
+      <Parameter Name="BranchID" Mode="In" Type="Int64" />
+      <Parameter Name="ProductID" Mode="In" Type="Int64" />
+      <Parameter Name="Quantity" Mode="In" Type="Int32" />
+      <Parameter Name="isActive" Mode="In" Type="Boolean" />
+    </FunctionImport>
+    <FunctionImport Name="USP_21424031_CancelOrder_DL">
+      <Parameter Name="OrderID" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="USP_21424031_CancelOrder_DL_Fix">
+      <Parameter Name="OrderID" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="USP_21424031_CancelOrder_LU">
+      <Parameter Name="OrderID" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="USP_21424031_CancelOrder_LU_Fix">
+      <Parameter Name="OrderID" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="USP_21424031_OrderConfirm_DL">
+      <Parameter Name="OrderID" Mode="In" Type="Int32" />
+      <Parameter Name="DriverID" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="USP_21424031_OrderConfirm_DL_Fix">
+      <Parameter Name="OrderID" Mode="In" Type="Int32" />
+      <Parameter Name="DriverID" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="USP_21424031_OrderConfirm_LU">
+      <Parameter Name="OrderID" Mode="In" Type="Int32" />
+      <Parameter Name="DriverID" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="USP_21424031_OrderConfirm_LU_Fix">
+      <Parameter Name="OrderID" Mode="In" Type="Int32" />
+      <Parameter Name="DriverID" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="USP_21424032_DIRTY_READ">
+      <Parameter Name="ORDERS_ID" Mode="In" Type="Int64" />
+      <Parameter Name="TONGTIEN" Mode="InOut" Type="Decimal" />
+    </FunctionImport>
+    <FunctionImport Name="USP_21424032_DIRTY_READ_Fix">
+      <Parameter Name="ORDERS_ID" Mode="In" Type="Int64" />
+      <Parameter Name="TONGTIEN" Mode="InOut" Type="Decimal" />
+    </FunctionImport>
+    <FunctionImport Name="USP_21424032_DIRTY_UPDATE">
+      <Parameter Name="ORDERS_ID" Mode="In" Type="Int64" />
+      <Parameter Name="PRODUCT_ID" Mode="In" Type="Int64" />
+      <Parameter Name="QUANTITY" Mode="In" Type="Int32" />
+      <Parameter Name="PRICE" Mode="In" Type="Decimal" />
+      <Parameter Name="AMOUNT" Mode="In" Type="Decimal" />
+    </FunctionImport>
+    <FunctionImport Name="USP_21424032_DIRTY_UPDATE_Fix">
+      <Parameter Name="ORDERS_ID" Mode="In" Type="Int64" />
+      <Parameter Name="PRODUCT_ID" Mode="In" Type="Int64" />
+      <Parameter Name="QUANTITY" Mode="In" Type="Int32" />
+      <Parameter Name="PRICE" Mode="In" Type="Decimal" />
+      <Parameter Name="AMOUNT" Mode="In" Type="Decimal" />
+    </FunctionImport>
+    <FunctionImport Name="USP_21424032_READ_DATA_CONTRACT" ReturnType="Collection(Decimal)" />
+    <FunctionImport Name="USP_21424032_READ_DATA_CONTRACT_Fix" ReturnType="Collection(Decimal)" />
+    <FunctionImport Name="USP_21424032_WRITE_DATA_CONTRACT">
+      <Parameter Name="CONTRACT_ID" Mode="In" Type="Int64" />
+    </FunctionImport>
+    <FunctionImport Name="USP_21424032_WRITE_DATA_CONTRACT_Fix">
+      <Parameter Name="CONTRACT_ID" Mode="In" Type="Int64" />
+    </FunctionImport>
+    <FunctionImport Name="USP_21424069_DELETE_DATA_PRODUCT">
+      <Parameter Name="PRODUCT_ID" Mode="In" Type="Int64" />
+    </FunctionImport>
+    <FunctionImport Name="USP_21424069_DELETE_DATA_PRODUCT_Fix">
+      <Parameter Name="PRODUCT_ID" Mode="In" Type="Int64" />
+    </FunctionImport>
+    <FunctionImport Name="USP_21424069_READ_DATA_Orders" ReturnType="Collection(Decimal)">
+      <Parameter Name="ORDERS_ID" Mode="In" Type="Int64" />
+    </FunctionImport>
+    <FunctionImport Name="USP_21424069_READ_DATA_Orders_Fix" ReturnType="Collection(Decimal)">
+      <Parameter Name="ORDERS_ID" Mode="In" Type="Int64" />
+    </FunctionImport>
+    <FunctionImport Name="USP_21424069_READ_DATA_PRODUCT" ReturnType="Collection(String)">
+      <Parameter Name="PRODUCT_ID" Mode="In" Type="Int64" />
+    </FunctionImport>
+    <FunctionImport Name="USP_21424069_READ_DATA_PRODUCT_Fix" ReturnType="Collection(String)">
+      <Parameter Name="PRODUCT_ID" Mode="In" Type="Int64" />
+    </FunctionImport>
+    <FunctionImport Name="USP_21424069_UPDATE_AMOUNT_ORDER">
+      <Parameter Name="ORDERS_ID" Mode="In" Type="Int64" />
+    </FunctionImport>
+    <FunctionImport Name="USP_21424069_UPDATE_AMOUNT_ORDER_Fix">
+      <Parameter Name="ORDERS_ID" Mode="In" Type="Int64" />
+    </FunctionImport>
+    <FunctionImport Name="USP_21424069_WRITE_DATA_OrdersDetail">
+      <Parameter Name="ID" Mode="In" Type="Int64" />
+      <Parameter Name="ORDERS_ID" Mode="In" Type="Int64" />
+      <Parameter Name="PRODUCT_ID" Mode="In" Type="Int64" />
+      <Parameter Name="QUANTITY" Mode="In" Type="Int32" />
+      <Parameter Name="PRICE" Mode="In" Type="Decimal" />
+      <Parameter Name="AMOUNT" Mode="In" Type="Decimal" />
+    </FunctionImport>
+    <FunctionImport Name="USP_21424069_WRITE_DATA_OrdersDetail_Fix">
+      <Parameter Name="ID" Mode="In" Type="Int64" />
+      <Parameter Name="ORDERS_ID" Mode="In" Type="Int64" />
+      <Parameter Name="PRODUCT_ID" Mode="In" Type="Int64" />
+      <Parameter Name="QUANTITY" Mode="In" Type="Int32" />
+      <Parameter Name="PRICE" Mode="In" Type="Decimal" />
+      <Parameter Name="AMOUNT" Mode="In" Type="Decimal" />
+    </FunctionImport>
+  </EntityContainer>
+  <ComplexType Name="sp_helpdiagramdefinition_Result">
+    <Property Type="Int32" Name="version" Nullable="true" />
+    <Property Type="Binary" Name="definition" Nullable="true" />
+  </ComplexType>
+  <ComplexType Name="sp_helpdiagrams_Result">
+    <Property Type="String" Name="Database" Nullable="true" MaxLength="128" />
+    <Property Type="String" Name="Name" Nullable="false" MaxLength="128" />
+    <Property Type="Int32" Name="ID" Nullable="false" />
+    <Property Type="String" Name="Owner" Nullable="true" MaxLength="128" />
+    <Property Type="Int32" Name="OwnerID" Nullable="false" />
+  </ComplexType>
+  <ComplexType Name="USP_21424028_Update_Contract_Result">
+    <Property Type="Int64" Name="ID" Nullable="false" />
+    <Property Type="Int64" Name="PartnerID" Nullable="false" />
+    <Property Type="String" Name="TaxCode" Nullable="true" MaxLength="50" />
+    <Property Type="String" Name="Representative" Nullable="true" MaxLength="50" />
+    <Property Type="Int32" Name="NumBranch" Nullable="true" />
+    <Property Type="Decimal" Name="Fee" Nullable="true" Precision="18" Scale="0" />
+    <Property Type="Decimal" Name="FeePerMonth" Nullable="true" Precision="18" Scale="2" />
+    <Property Type="DateTime" Name="FromDate" Nullable="true" />
+    <Property Type="DateTime" Name="ToDate" Nullable="true" />
+  </ComplexType>
+  <ComplexType Name="USP_21424028_Update_Contract_Fix_Result">
+    <Property Type="Int64" Name="ID" Nullable="false" />
+    <Property Type="Int64" Name="PartnerID" Nullable="false" />
+    <Property Type="String" Name="TaxCode" Nullable="true" MaxLength="50" />
+    <Property Type="String" Name="Representative" Nullable="true" MaxLength="50" />
+    <Property Type="Int32" Name="NumBranch" Nullable="true" />
+    <Property Type="Decimal" Name="Fee" Nullable="true" Precision="18" Scale="0" />
+    <Property Type="Decimal" Name="FeePerMonth" Nullable="true" Precision="18" Scale="2" />
+    <Property Type="DateTime" Name="FromDate" Nullable="true" />
+    <Property Type="DateTime" Name="ToDate" Nullable="true" />
+  </ComplexType>
+</Schema>

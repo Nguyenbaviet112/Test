@@ -1,0 +1,1 @@
+﻿DECLARE @RT INTEXEC @RT = USP_WRITE_DATA_OrdersDetail 1,1,3,1,6000000,6000000IF @RT = 1	PRINT N'THÊM THẤT BẠI'ELSE	PRINT N'THÊM THÀNH CÔNG'select SUM(Amount) from OrderDetails WHERE OrderID = 1

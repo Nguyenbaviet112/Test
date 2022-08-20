@@ -1,0 +1,1 @@
+﻿SELECT * FROM ProductBranchDECLARE @RT INTEXEC @RT = USP_Insert_Order 1, 1, 10, 20, 1, 1, 20, 20, N'123 NGUYỄN VĂN CỪ', 0, NULL, 1, 1, 2, 50, 10IF @RT = 1	PRINT N'ĐẶT HÀNG THẤT BẠI'ELSE	PRINT N'ĐẶT HÀNG THÀNH CÔNG'SELECT * FROM ProductBranch

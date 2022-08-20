@@ -1,0 +1,11 @@
+﻿
+
+DECLARE @RT INT
+EXEC @RT = USP_READ_DATA_CONTRACT
+IF @RT = 1
+	PRINT N'Đọc thất bại'
+ELSE
+	PRINT N'Đọc THÀNH CÔNG'
+
+
+SELECT SUM(CT.FEE) FROM Contract CT

@@ -1,0 +1,249 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="BookingAndTransferFoodsModelStoreContainer" CdmEntityContainer="BookingAndTransferFoodsEntities">
+    <EntitySetMapping Name="Branches">
+      <EntityTypeMapping TypeName="BookingAndTransferFoodsModel.Branch">
+        <MappingFragment StoreEntitySet="Branch">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="PartnerID" ColumnName="PartnerID" />
+          <ScalarProperty Name="Branchname" ColumnName="Branchname" />
+          <ScalarProperty Name="CityID" ColumnName="CityID" />
+          <ScalarProperty Name="DistrictID" ColumnName="DistrictID" />
+          <ScalarProperty Name="Address" ColumnName="Address" />
+          <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Contracts">
+      <EntityTypeMapping TypeName="BookingAndTransferFoodsModel.Contract">
+        <MappingFragment StoreEntitySet="Contract">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="PartnerID" ColumnName="PartnerID" />
+          <ScalarProperty Name="TaxCode" ColumnName="TaxCode" />
+          <ScalarProperty Name="Representative" ColumnName="Representative" />
+          <ScalarProperty Name="NumBranch" ColumnName="NumBranch" />
+          <ScalarProperty Name="Fee" ColumnName="Fee" />
+          <ScalarProperty Name="FeePerMonth" ColumnName="FeePerMonth" />
+          <ScalarProperty Name="FromDate" ColumnName="FromDate" />
+          <ScalarProperty Name="ToDate" ColumnName="ToDate" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Dictionaries">
+      <EntityTypeMapping TypeName="BookingAndTransferFoodsModel.Dictionary">
+        <MappingFragment StoreEntitySet="Dictionary">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="Type" ColumnName="Type" />
+          <ScalarProperty Name="ItemID" ColumnName="ItemID" />
+          <ScalarProperty Name="ItemName" ColumnName="ItemName" />
+          <ScalarProperty Name="ParentID" ColumnName="ParentID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="OrderDetails">
+      <EntityTypeMapping TypeName="BookingAndTransferFoodsModel.OrderDetail">
+        <MappingFragment StoreEntitySet="OrderDetails">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="OrderID" ColumnName="OrderID" />
+          <ScalarProperty Name="ProductID" ColumnName="ProductID" />
+          <ScalarProperty Name="Quantity" ColumnName="Quantity" />
+          <ScalarProperty Name="Price" ColumnName="Price" />
+          <ScalarProperty Name="Amount" ColumnName="Amount" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Orders">
+      <EntityTypeMapping TypeName="BookingAndTransferFoodsModel.Order">
+        <MappingFragment StoreEntitySet="Orders">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="BranchID" ColumnName="BranchID" />
+          <ScalarProperty Name="Payment" ColumnName="Payment" />
+          <ScalarProperty Name="Amount" ColumnName="Amount" />
+          <ScalarProperty Name="TotalAmount" ColumnName="TotalAmount" />
+          <ScalarProperty Name="CustomerCityID" ColumnName="CustomerCityID" />
+          <ScalarProperty Name="CustomerDistrictID" ColumnName="CustomerDistrictID" />
+          <ScalarProperty Name="ProductFee" ColumnName="ProductFee" />
+          <ScalarProperty Name="TransferFee" ColumnName="TransferFee" />
+          <ScalarProperty Name="CustomerAddress" ColumnName="CustomerAddress" />
+          <ScalarProperty Name="Status" ColumnName="Status" />
+          <ScalarProperty Name="DriverID" ColumnName="DriverID" />
+          <ScalarProperty Name="CustomerID" ColumnName="CustomerID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="ProductBranches">
+      <EntityTypeMapping TypeName="BookingAndTransferFoodsModel.ProductBranch">
+        <MappingFragment StoreEntitySet="ProductBranch">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="BranchID" ColumnName="BranchID" />
+          <ScalarProperty Name="ProductID" ColumnName="ProductID" />
+          <ScalarProperty Name="Quantity" ColumnName="Quantity" />
+          <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Products">
+      <EntityTypeMapping TypeName="BookingAndTransferFoodsModel.Product">
+        <MappingFragment StoreEntitySet="Products">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="Price" ColumnName="Price" />
+          <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Roles">
+      <EntityTypeMapping TypeName="BookingAndTransferFoodsModel.Role">
+        <MappingFragment StoreEntitySet="Roles">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="sysdiagrams">
+      <EntityTypeMapping TypeName="BookingAndTransferFoodsModel.sysdiagram">
+        <MappingFragment StoreEntitySet="sysdiagrams">
+          <ScalarProperty Name="name" ColumnName="name" />
+          <ScalarProperty Name="principal_id" ColumnName="principal_id" />
+          <ScalarProperty Name="diagram_id" ColumnName="diagram_id" />
+          <ScalarProperty Name="version" ColumnName="version" />
+          <ScalarProperty Name="definition" ColumnName="definition" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="UserPermissions">
+      <EntityTypeMapping TypeName="BookingAndTransferFoodsModel.UserPermission">
+        <MappingFragment StoreEntitySet="UserPermission">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="RoleID" ColumnName="RoleID" />
+          <ScalarProperty Name="AdminFn" ColumnName="AdminFn" />
+          <ScalarProperty Name="PartnerFn" ColumnName="PartnerFn" />
+          <ScalarProperty Name="CustomerFn" ColumnName="CustomerFn" />
+          <ScalarProperty Name="DriverFn" ColumnName="DriverFn" />
+          <ScalarProperty Name="StaffFn" ColumnName="StaffFn" />
+          <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Users">
+      <EntityTypeMapping TypeName="BookingAndTransferFoodsModel.User">
+        <MappingFragment StoreEntitySet="Users">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="UserName" ColumnName="UserName" />
+          <ScalarProperty Name="Password" ColumnName="Password" />
+          <ScalarProperty Name="FullName" ColumnName="FullName" />
+          <ScalarProperty Name="Representative" ColumnName="Representative" />
+          <ScalarProperty Name="Identity" ColumnName="Identity" />
+          <ScalarProperty Name="Phone" ColumnName="Phone" />
+          <ScalarProperty Name="CityID" ColumnName="CityID" />
+          <ScalarProperty Name="District" ColumnName="District" />
+          <ScalarProperty Name="Address" ColumnName="Address" />
+          <ScalarProperty Name="Email" ColumnName="Email" />
+          <ScalarProperty Name="NumBranch" ColumnName="NumBranch" />
+          <ScalarProperty Name="NameOfBank" ColumnName="NameOfBank" />
+          <ScalarProperty Name="BankAccount" ColumnName="BankAccount" />
+          <ScalarProperty Name="NumOfOrder" ColumnName="NumOfOrder" />
+          <ScalarProperty Name="TypeTransferID" ColumnName="TypeTransferID" />
+          <ScalarProperty Name="LicensePlates" ColumnName="LicensePlates" />
+          <ScalarProperty Name="RoleID" ColumnName="RoleID" />
+          <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <FunctionImportMapping FunctionImportName="SP_21424057_Order" FunctionName="BookingAndTransferFoodsModel.Store.SP_21424057_Order" />
+    <FunctionImportMapping FunctionImportName="SP_21424057_Order_Fix" FunctionName="BookingAndTransferFoodsModel.Store.SP_21424057_Order_Fix" />
+    <FunctionImportMapping FunctionImportName="SP_21424057_Transfer1" FunctionName="BookingAndTransferFoodsModel.Store.SP_21424057_Transfer1" />
+    <FunctionImportMapping FunctionImportName="SP_21424057_Transfer1_Fix" FunctionName="BookingAndTransferFoodsModel.Store.SP_21424057_Transfer1_Fix" />
+    <FunctionImportMapping FunctionImportName="SP_21424057_Transfer2" FunctionName="BookingAndTransferFoodsModel.Store.SP_21424057_Transfer2" />
+    <FunctionImportMapping FunctionImportName="SP_21424057_Transfer2_Fix" FunctionName="BookingAndTransferFoodsModel.Store.SP_21424057_Transfer2_Fix" />
+    <FunctionImportMapping FunctionImportName="SP_21424057_UPDATE_PRICE" FunctionName="BookingAndTransferFoodsModel.Store.SP_21424057_UPDATE_PRICE" />
+    <FunctionImportMapping FunctionImportName="SP_21424057_UPDATE_PRICE_Fix" FunctionName="BookingAndTransferFoodsModel.Store.SP_21424057_UPDATE_PRICE_Fix" />
+    <FunctionImportMapping FunctionImportName="sp_alterdiagram" FunctionName="BookingAndTransferFoodsModel.Store.sp_alterdiagram" />
+    <FunctionImportMapping FunctionImportName="sp_creatediagram" FunctionName="BookingAndTransferFoodsModel.Store.sp_creatediagram" />
+    <FunctionImportMapping FunctionImportName="sp_dropdiagram" FunctionName="BookingAndTransferFoodsModel.Store.sp_dropdiagram" />
+    <FunctionImportMapping FunctionImportName="sp_helpdiagramdefinition" FunctionName="BookingAndTransferFoodsModel.Store.sp_helpdiagramdefinition">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="BookingAndTransferFoodsModel.sp_helpdiagramdefinition_Result">
+          <ScalarProperty Name="version" ColumnName="version" />
+          <ScalarProperty Name="definition" ColumnName="definition" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="sp_helpdiagrams" FunctionName="BookingAndTransferFoodsModel.Store.sp_helpdiagrams">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="BookingAndTransferFoodsModel.sp_helpdiagrams_Result">
+          <ScalarProperty Name="Database" ColumnName="Database" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="Owner" ColumnName="Owner" />
+          <ScalarProperty Name="OwnerID" ColumnName="OwnerID" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="sp_renamediagram" FunctionName="BookingAndTransferFoodsModel.Store.sp_renamediagram" />
+    <FunctionImportMapping FunctionImportName="sp_upgraddiagrams" FunctionName="BookingAndTransferFoodsModel.Store.sp_upgraddiagrams" />
+    <FunctionImportMapping FunctionImportName="USP_21424028_Contract_Extension" FunctionName="BookingAndTransferFoodsModel.Store.USP_21424028_Contract_Extension" />
+    <FunctionImportMapping FunctionImportName="USP_21424028_Contract_Extension_Fix" FunctionName="BookingAndTransferFoodsModel.Store.USP_21424028_Contract_Extension_Fix" />
+    <FunctionImportMapping FunctionImportName="USP_21424028_Insert_Order" FunctionName="BookingAndTransferFoodsModel.Store.USP_21424028_Insert_Order" />
+    <FunctionImportMapping FunctionImportName="USP_21424028_Insert_Order_Fix" FunctionName="BookingAndTransferFoodsModel.Store.USP_21424028_Insert_Order_Fix" />
+    <FunctionImportMapping FunctionImportName="USP_21424028_Update_Contract" FunctionName="BookingAndTransferFoodsModel.Store.USP_21424028_Update_Contract">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="BookingAndTransferFoodsModel.USP_21424028_Update_Contract_Result">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="PartnerID" ColumnName="PartnerID" />
+          <ScalarProperty Name="TaxCode" ColumnName="TaxCode" />
+          <ScalarProperty Name="Representative" ColumnName="Representative" />
+          <ScalarProperty Name="NumBranch" ColumnName="NumBranch" />
+          <ScalarProperty Name="Fee" ColumnName="Fee" />
+          <ScalarProperty Name="FeePerMonth" ColumnName="FeePerMonth" />
+          <ScalarProperty Name="FromDate" ColumnName="FromDate" />
+          <ScalarProperty Name="ToDate" ColumnName="ToDate" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="USP_21424028_Update_Contract_Fix" FunctionName="BookingAndTransferFoodsModel.Store.USP_21424028_Update_Contract_Fix">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="BookingAndTransferFoodsModel.USP_21424028_Update_Contract_Fix_Result">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="PartnerID" ColumnName="PartnerID" />
+          <ScalarProperty Name="TaxCode" ColumnName="TaxCode" />
+          <ScalarProperty Name="Representative" ColumnName="Representative" />
+          <ScalarProperty Name="NumBranch" ColumnName="NumBranch" />
+          <ScalarProperty Name="Fee" ColumnName="Fee" />
+          <ScalarProperty Name="FeePerMonth" ColumnName="FeePerMonth" />
+          <ScalarProperty Name="FromDate" ColumnName="FromDate" />
+          <ScalarProperty Name="ToDate" ColumnName="ToDate" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="USP_21424028_Update_Quantity_Product" FunctionName="BookingAndTransferFoodsModel.Store.USP_21424028_Update_Quantity_Product" />
+    <FunctionImportMapping FunctionImportName="USP_21424028_Update_Quantity_Product_Fix" FunctionName="BookingAndTransferFoodsModel.Store.USP_21424028_Update_Quantity_Product_Fix" />
+    <FunctionImportMapping FunctionImportName="USP_21424031_CancelOrder_DL" FunctionName="BookingAndTransferFoodsModel.Store.USP_21424031_CancelOrder_DL" />
+    <FunctionImportMapping FunctionImportName="USP_21424031_CancelOrder_DL_Fix" FunctionName="BookingAndTransferFoodsModel.Store.USP_21424031_CancelOrder_DL_Fix" />
+    <FunctionImportMapping FunctionImportName="USP_21424031_CancelOrder_LU" FunctionName="BookingAndTransferFoodsModel.Store.USP_21424031_CancelOrder_LU" />
+    <FunctionImportMapping FunctionImportName="USP_21424031_CancelOrder_LU_Fix" FunctionName="BookingAndTransferFoodsModel.Store.USP_21424031_CancelOrder_LU_Fix" />
+    <FunctionImportMapping FunctionImportName="USP_21424031_OrderConfirm_DL" FunctionName="BookingAndTransferFoodsModel.Store.USP_21424031_OrderConfirm_DL" />
+    <FunctionImportMapping FunctionImportName="USP_21424031_OrderConfirm_DL_Fix" FunctionName="BookingAndTransferFoodsModel.Store.USP_21424031_OrderConfirm_DL_Fix" />
+    <FunctionImportMapping FunctionImportName="USP_21424031_OrderConfirm_LU" FunctionName="BookingAndTransferFoodsModel.Store.USP_21424031_OrderConfirm_LU" />
+    <FunctionImportMapping FunctionImportName="USP_21424031_OrderConfirm_LU_Fix" FunctionName="BookingAndTransferFoodsModel.Store.USP_21424031_OrderConfirm_LU_Fix" />
+    <FunctionImportMapping FunctionImportName="USP_21424032_DIRTY_READ" FunctionName="BookingAndTransferFoodsModel.Store.USP_21424032_DIRTY_READ" />
+    <FunctionImportMapping FunctionImportName="USP_21424032_DIRTY_READ_Fix" FunctionName="BookingAndTransferFoodsModel.Store.USP_21424032_DIRTY_READ_Fix" />
+    <FunctionImportMapping FunctionImportName="USP_21424032_DIRTY_UPDATE" FunctionName="BookingAndTransferFoodsModel.Store.USP_21424032_DIRTY_UPDATE" />
+    <FunctionImportMapping FunctionImportName="USP_21424032_DIRTY_UPDATE_Fix" FunctionName="BookingAndTransferFoodsModel.Store.USP_21424032_DIRTY_UPDATE_Fix" />
+    <FunctionImportMapping FunctionImportName="USP_21424032_READ_DATA_CONTRACT" FunctionName="BookingAndTransferFoodsModel.Store.USP_21424032_READ_DATA_CONTRACT" />
+    <FunctionImportMapping FunctionImportName="USP_21424032_READ_DATA_CONTRACT_Fix" FunctionName="BookingAndTransferFoodsModel.Store.USP_21424032_READ_DATA_CONTRACT_Fix" />
+    <FunctionImportMapping FunctionImportName="USP_21424032_WRITE_DATA_CONTRACT" FunctionName="BookingAndTransferFoodsModel.Store.USP_21424032_WRITE_DATA_CONTRACT" />
+    <FunctionImportMapping FunctionImportName="USP_21424032_WRITE_DATA_CONTRACT_Fix" FunctionName="BookingAndTransferFoodsModel.Store.USP_21424032_WRITE_DATA_CONTRACT_Fix" />
+    <FunctionImportMapping FunctionImportName="USP_21424069_DELETE_DATA_PRODUCT" FunctionName="BookingAndTransferFoodsModel.Store.USP_21424069_DELETE_DATA_PRODUCT" />
+    <FunctionImportMapping FunctionImportName="USP_21424069_DELETE_DATA_PRODUCT_Fix" FunctionName="BookingAndTransferFoodsModel.Store.USP_21424069_DELETE_DATA_PRODUCT_Fix" />
+    <FunctionImportMapping FunctionImportName="USP_21424069_READ_DATA_Orders" FunctionName="BookingAndTransferFoodsModel.Store.USP_21424069_READ_DATA_Orders" />
+    <FunctionImportMapping FunctionImportName="USP_21424069_READ_DATA_Orders_Fix" FunctionName="BookingAndTransferFoodsModel.Store.USP_21424069_READ_DATA_Orders_Fix" />
+    <FunctionImportMapping FunctionImportName="USP_21424069_READ_DATA_PRODUCT" FunctionName="BookingAndTransferFoodsModel.Store.USP_21424069_READ_DATA_PRODUCT" />
+    <FunctionImportMapping FunctionImportName="USP_21424069_READ_DATA_PRODUCT_Fix" FunctionName="BookingAndTransferFoodsModel.Store.USP_21424069_READ_DATA_PRODUCT_Fix" />
+    <FunctionImportMapping FunctionImportName="USP_21424069_UPDATE_AMOUNT_ORDER" FunctionName="BookingAndTransferFoodsModel.Store.USP_21424069_UPDATE_AMOUNT_ORDER" />
+    <FunctionImportMapping FunctionImportName="USP_21424069_UPDATE_AMOUNT_ORDER_Fix" FunctionName="BookingAndTransferFoodsModel.Store.USP_21424069_UPDATE_AMOUNT_ORDER_Fix" />
+    <FunctionImportMapping FunctionImportName="USP_21424069_WRITE_DATA_OrdersDetail" FunctionName="BookingAndTransferFoodsModel.Store.USP_21424069_WRITE_DATA_OrdersDetail" />
+    <FunctionImportMapping FunctionImportName="USP_21424069_WRITE_DATA_OrdersDetail_Fix" FunctionName="BookingAndTransferFoodsModel.Store.USP_21424069_WRITE_DATA_OrdersDetail_Fix" />
+  </EntityContainerMapping>
+</Mapping>
