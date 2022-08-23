@@ -1,1 +1,1 @@
-﻿DECLARE @RT INTEXEC @RT = USP_WRITE_DATA_OrdersDetail 1,1,3,1,6000000,6000000IF @RT = 1	PRINT N'THÊM THẤT BẠI'ELSE	PRINT N'THÊM THÀNH CÔNG'select SUM(Amount) from OrderDetails WHERE OrderID = 1
+﻿DECLARE @RT INTEXEC @RT = USP_21424069_INSERT_DATA_USERS N'Trần Thị B', '0334157841', 'TP HCM', 'TTB@gmail.com', N'VP Bank', '147852369', 2,2IF @RT = 1	PRINT N'THÊM THẤT BẠI'ELSE	PRINT N'THÊM THÀNH CÔNG'select * from Users u where u.RoleID = 2
