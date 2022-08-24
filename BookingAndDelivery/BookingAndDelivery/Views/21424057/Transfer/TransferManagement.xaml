@@ -1,0 +1,124 @@
+﻿<Page x:Class="BookingAndDelivery.Views.Transfer.TransferManagement"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+      xmlns:local="clr-namespace:BookingAndDelivery.Views.Transfer"
+      mc:Ignorable="d" 
+      d:DesignHeight="450" d:DesignWidth="800"
+      Title="TransferManagement"
+      Background="White">
+
+    <Grid>
+        <materialDesign:DialogHost BorderBrush="{DynamicResource MaterialDesignDivider}" x:Name="DialogNhapDiem" >
+            <materialDesign:DialogHost.DialogContent>
+                <StackPanel Width="400" Height="auto">
+                    <StackPanel>
+                        <TextBlock x:Name="txtTitle" Margin="0,10,0,10" FontSize="20" Foreground="Black" FontWeight="SemiBold" HorizontalAlignment="Center">Xác nhận vận chuyển</TextBlock>
+                        <TextBox Name="txtID" Visibility="Collapsed" IsEnabled="False" Margin="0 6" materialDesign:HintAssist.Hint="ID" Style="{StaticResource MaterialDesignOutlinedTextBox}" Width="300"  FontSize="14"/>
+                        <TextBox Margin="0 12" Name="txtAmount" materialDesign:HintAssist.Hint="Số tiền" Style="{StaticResource MaterialDesignOutlinedTextBox}" Width="300" FontSize="14" IsReadOnly="True"></TextBox>
+                        <TextBox Margin="0 12" Name="txtFee" materialDesign:HintAssist.Hint="Phí vận chuyển" Style="{StaticResource MaterialDesignOutlinedTextBox}" Width="300"  FontSize="14" IsReadOnly="True"/>
+                        <TextBox Margin="0 12" Name="txtTotalAmount" materialDesign:HintAssist.Hint="Tổng tiền" Style="{StaticResource MaterialDesignOutlinedTextBox}" Width="300"  FontSize="14" IsReadOnly="True"/>
+                    </StackPanel>
+                    <UniformGrid Name="unfUpdate" Columns="2"  VerticalAlignment="Bottom" Margin="0 20 0 20" Visibility="Collapsed">
+                        <Button Name="btnTransfer1" Click="btnTransfer1_Click" HorizontalAlignment="Center" Background="Yellow" Height="40" Width="120" Foreground="Black">
+                            Vận chuyển 1
+                        </Button>
+                        <Button Name="btnTransfer2" Click="btnTransfer2_Click" HorizontalAlignment="Center" Background="Yellow" Height="40" Width="120" Foreground="Black">
+                            Vận chuyển 2
+                        </Button>
+                        <Button Name="btnTransfer1_Fix" Click="btnTransfer1_Fix_Click" HorizontalAlignment="Center" Background="#23FF61" Height="40" Width="120" Foreground="Black">
+                            Vận chuyển 1 fix
+                        </Button>
+                        <Button Name="btnTransfer2_Fix" Click="btnTransfer2_Fix_Click" HorizontalAlignment="Center" Background="#23FF61" Height="40" Width="120" Foreground="Black">
+                            Vận chuyển 2 fix
+                        </Button>
+                        <Button Name="btnCancelUpdate"  HorizontalAlignment="Center" Command="{x:Static materialDesign:DialogHost.CloseDialogCommand}" Background="#FF2525"  Height="40" Width="90" Foreground="Black">
+                            Đóng
+                        </Button>
+                    </UniformGrid>
+                </StackPanel>
+            </materialDesign:DialogHost.DialogContent>
+        <Grid>
+            <StackPanel>
+                <TextBlock Text="Quản lý vận chuyển" FontSize="20" HorizontalAlignment="Center"/>
+
+                <WrapPanel Margin="70,15,0,0">
+                    <Border CornerRadius="6" BorderThickness="1" BorderBrush="Black">
+                        <TextBox Name="txtSearch" Width="400" FontSize="15" materialDesign:HintAssist.Hint=" Tìm kiếm" />
+                    </Border>
+                    <Button Name="btnSearch" Width="100" Margin="30,0,0,0" Content="Tìm kiếm" Foreground="White" ></Button>
+                    <!--<Button Name="btnDelete" Width="50" Margin="30,0,0,0" Background="Red" Foreground="White"></Button>-->
+                    <Button Name="btnTransfer" 
+                            Click="btnTransfer_Click"
+                            Margin="10 0"
+                            Height="30"
+                            Width="55"
+                            Background="Red">
+                        <materialDesign:PackIcon Kind="PlusThick" MinHeight="30" MinWidth="30" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                    </Button>
+                    <Button
+                        Name="btnTransfer_Fix"
+                        Click="btnTransfer_Fix_Click"
+                        Margin="0 0"
+                        Height="30"
+                        Width="55"
+                        Background="Green">
+                        <materialDesign:PackIcon Kind="PlusThick" MinHeight="30" MinWidth="30" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                    </Button>
+
+                </WrapPanel>
+                <TextBlock Text="Danh sách đơn hàng" FontSize="20"/>
+                <ListView Name="lvLstOrder" Margin="0,15,0,0" SelectionMode="Single">
+                    <ListView.Resources>
+                        <DataTemplate x:Key="Templ">
+                            <TextBlock HorizontalAlignment="Center" Text="{Binding}"/>
+                        </DataTemplate>
+                        <Style x:Key="HeaderStyle" TargetType="GridViewColumnHeader">
+                            <Setter Property="HorizontalContentAlignment" Value="Center"/>
+                        </Style>
+                    </ListView.Resources>
+                    <ListView.View>
+                        <GridView>
+                            <GridViewColumn Header="ID" Width="0" DisplayMemberBinding="{Binding ID}"/>
+                            <GridViewColumn Header="Hình thức thanh toán" Width="140" DisplayMemberBinding="{Binding Payment}" />
+                            <GridViewColumn Header="Số tiền" Width="120" DisplayMemberBinding="{Binding Amount}" />
+                            <GridViewColumn Header="Phí vận chuyển" Width="160" DisplayMemberBinding="{Binding TransferFee}" />
+                            <GridViewColumn Header="Tổng tiền" Width="120" DisplayMemberBinding="{Binding TotalAmount}" />
+                            <GridViewColumn Header="Thành phố" Width="0" DisplayMemberBinding="{Binding City}" />
+                            <GridViewColumn Header="Quận" Width="0" DisplayMemberBinding="{Binding District}" />
+                            <GridViewColumn Header="Địa chỉ" Width="120" DisplayMemberBinding="{Binding Adrress}" />
+                            <GridViewColumn Header="Trạng thái" Width="140" DisplayMemberBinding="{Binding Status}" />
+                        </GridView>
+                    </ListView.View>
+                </ListView>
+                <TextBlock Text="Đơn hàng đang vận chuyển" FontSize="20"/>
+                <ListView Name="lvLstTransfer" Margin="0,15,0,0" SelectionMode="Single">
+                    <ListView.Resources>
+                        <DataTemplate x:Key="Templ">
+                            <TextBlock HorizontalAlignment="Center" Text="{Binding}"/>
+                        </DataTemplate>
+                        <Style x:Key="HeaderStyle" TargetType="GridViewColumnHeader">
+                            <Setter Property="HorizontalContentAlignment" Value="Center"/>
+                        </Style>
+                    </ListView.Resources>
+                    <ListView.View>
+                        <GridView>
+                            <GridViewColumn Header="ID" Width="0" DisplayMemberBinding="{Binding ID}"/>
+                            <GridViewColumn Header="Hình thức thanh toán" Width="140" DisplayMemberBinding="{Binding Payment}" />
+                            <GridViewColumn Header="Số tiền" Width="120" DisplayMemberBinding="{Binding Amount}" />
+                            <GridViewColumn Header="Phí vận chuyển" Width="160" DisplayMemberBinding="{Binding TransferFee}" />
+                            <GridViewColumn Header="Tổng tiền" Width="120" DisplayMemberBinding="{Binding TotalAmount}" />
+                            <GridViewColumn Header="Thành phố" Width="0" DisplayMemberBinding="{Binding City}" />
+                            <GridViewColumn Header="Quận" Width="0" DisplayMemberBinding="{Binding District}" />
+                            <GridViewColumn Header="Địa chỉ" Width="120" DisplayMemberBinding="{Binding Adrress}" />
+                            <GridViewColumn Header="Trạng thái" Width="140" DisplayMemberBinding="{Binding Status}" />
+                        </GridView>
+                    </ListView.View>
+                </ListView>
+            </StackPanel>
+        </Grid>
+        </materialDesign:DialogHost>
+    </Grid>
+</Page>
